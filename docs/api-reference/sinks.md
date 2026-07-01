@@ -2243,6 +2243,7 @@ def __init__(host: str,
              statement_timeout_seconds: int = 30,
              primary_key_columns: PrimaryKeyColumns = (),
              upsert_on_primary_key: bool = False,
+             include_metadata: bool = True,
              on_client_connect_success: Optional[
                  ClientConnectSuccessCallback] = None,
              on_client_connect_failure: Optional[
@@ -2282,6 +2283,9 @@ It must include all currently defined primary key columns on a given table.
 - `upsert_on_primary_key`: Upsert based on the given `primary_key_columns`.
 If False, every message is treated as an independent entry, and any
 primary key collisions will consequently raise an exception.
+- `include_metadata`: If True (default), includes ``__key`` and ``timestamp``
+columns for every row written to PostgreSQL. Set to False to omit them.
+Defaults to True for backward compatibility.
 - `on_client_connect_success`: An optional callback made after successful
 client authentication, primarily for additional logging.
 - `on_client_connect_failure`: An optional callback made after failed
